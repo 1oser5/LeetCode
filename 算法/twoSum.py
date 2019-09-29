@@ -32,8 +32,8 @@ def twoSum(nums, target):
         if m in temp:
                 return [i,temp.index(m)+1+i]
 
-#使用hash表求解，这里使用字典模拟哈希表
 def twoSum(nums, target):
+    '''使用hash表求解，这里使用字典模拟哈希表 92 ms	15.1 MB'''
     hashmap = {}
     for i,num in enumerate(nums):
         if target - num in hashmap:
