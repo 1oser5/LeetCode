@@ -45,11 +45,17 @@
 # here put the import lib
 class Solution:
     def isValid(self, s: str) -> bool:
-        if s == '':
-            return True
+        '''40 ms	13.8 MB'''
         stack = []
+        mp = {')':'(',']':'[','}':'{'}
         for i in s:
-            if i == '}':
-                stack.pop('{')
+            if i in mp:
+                top = stack.pop() if stack else '#'
+                if mp[i] != top: return False
+            else:
+                stack.append(i)
+        return not stack
 if __name__ == '__main__':
-    pass
+    s = Solution()
+    print(s.isValid('{[]}'))
+    print(s.isValid('([)]'))
