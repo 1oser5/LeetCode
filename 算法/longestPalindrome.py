@@ -28,6 +28,7 @@
 # here put the import lib
 class Solution:
     def longestPalindrome(self, s: str) -> str:
+        """924 ms	13.8 MB"""
         size = len(s)
         if size < 2:
             return s
