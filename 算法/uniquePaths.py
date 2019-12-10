@@ -46,4 +46,4 @@ class Solution:
         return dp[m][n]
 if __name__ == '__main__':
     s = Solution()
-    print(s.uniquePaths(3,2))
+    print(s.uniquePaths(3,3))
