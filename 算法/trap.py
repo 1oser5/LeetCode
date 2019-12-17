@@ -28,27 +28,20 @@
 from typing import List
 class Solution:
     def trap(self, height: List[int]) -> int:
-        cur = 0
+        """动态规划"""
+        if not height: return 0
+        n = len(height)
         res = 0
-        low_stack = []
-        high_stack = []
-        while cur < len(height) - 1:
-            while cur < len(height) - 1 and height[cur] > height[cur+1]:
-                low_stack.append(height[cur])
-                cur += 1
-            while  cur < len(height) - 1 and height[cur] < height[cur+1] and low_stack:
-                #存储最低点
-                if not high_stack:
-                    high_stack.append(height[cur])
-                high_stack.append(height[cur+1])
-                cur += 1
-            if high_stack and low_stack:
-                while high_stack[-1] < low_stack[0] and len(low_stack) > 1:
-                    low_stack.pop(0)
-                res += min(low_stack[0], high_stack[-1]) * (len(high_stack)+len(low_stack)-2) - sum(high_stack[:-1]) - sum(low_stack[1:])
-                low_stack,high_stack = [],[]
-                continue
-            cur += 1
+        max_left = [0] * n
+        max_right = [0] * n
+        max_left[0] = height[0]
+        max_right[-1] = height[-1]
+        for i in range(1, n):
+            max_left[i] = max(height[i], max_left[i-1])
+        for i in range(n-2, -1, -1):
+            max_right[i] = max(height[i], max_right[i+1])
+        for i in range(n):
+            res += min(max_left[i], max_right[i]) - height[i]
         return res
 if __name__ == '__main__':
     s = Solution()
