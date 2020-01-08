@@ -38,7 +38,8 @@ class Solution:
         p[0][0] = triangle[0][0]
         for i in range(1,m):
             for j in range(len(triangle[i])):
-                p[i][j] = triangle[i][j] + min(p[i-1][j-1], p[i-1][j])
+                p[i][j] = triangle[i][j] + min(p[i-1][j-1], p[i-1][j]) # j=0 时， 取到 -1 为 inf 可以无视
+        print(p)
         return min(p.pop())
 if __name__ == '__main__':
     s = Solution()
