@@ -51,6 +51,7 @@ class Solution:
             quick_sort(l, left+1, high)
             return l
         l = quick_sort(nums, 0, len(nums)-1)
+        print(l)
         return l[(0+len(l)-1)//2]
 
 
@@ -67,5 +68,5 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    c = s.majorityElement1([1, 2, 3, 2, 2, 2, 5, 4, 2])
+    c = s.majorityElement([0,1,2,1])
     print(c)
