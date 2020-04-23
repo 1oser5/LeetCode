@@ -20,7 +20,7 @@ class Solution:
         res = []
         n = len(nums)
         for i in range(n):
-            while deque and nums[i] > deque[-1]:
+            while deque and nums[i] > nums[deque[-1]]:
                 deque.pop()
             deque.append(i)
             while i - deque[0] > k - 1:
@@ -33,5 +33,6 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    c = s.maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)
+    # c = s.maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)
+    c = s.maxSlidingWindow([7,2,4], 2)
     print(c)
