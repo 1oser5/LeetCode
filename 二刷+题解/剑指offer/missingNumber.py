@@ -17,9 +17,10 @@ class Solution:
         while left <= right:
             mid = (left + right) >> 1
             if nums[mid] != mid:
-                pass
+                right -= 1
             else:
-                left = mid
+                left += 1
+        return left
 
 
 
