@@ -23,11 +23,14 @@ class Solution:
         if size < 2:
             return
         zero, two = 0, size
-        for i in range(size):
+        i = 0
+        while i < two:
             if nums[i] == 0:
                 nums[i], nums[zero] = nums[zero], nums[i]
                 zero += 1
+                i += 1
             elif nums[i] == 1:
+                i += 1
                 continue
             else:
                 nums[i], nums[two] = nums[two], nums[i]
