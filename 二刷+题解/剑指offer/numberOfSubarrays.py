@@ -62,10 +62,41 @@ class Solution:
                 cur -= 1
         return res
 
+    def numberOfSubarrays2(self, nums: List[int], k: int) -> int:
+        ''' 前缀和 超时 '''
+        from collections import defaultdict
+        res = 0
+        prefix = defaultdict(int)
+        prefix[0] = 1
+        cur = 0
+        for i in range(len(nums)):
+            cur += nums[i] & 1
+            prefix[cur] += 1
+            if cur >= k:
+                res += prefix[cur-k]
+        return res
+
+
+
+    def numberOfSubarrays3(self, nums: List[int], k: int) -> int:
+        '''  动态规划超时 '''
+        n = len(nums)
+        dp = [[0] * n for _ in range(n)]
+        res = 0
+        # 初始化
+        for i in range(n):
+            if nums[i] & 1 == 1:
+                dp[i][i] = 1
+
+        for i in range(n):
+            for j in range(i, n):
+                dp[i][j] = dp[i][j-1] + (nums[j] & 1)
+                if dp[i][j] == k:
+                    res += 1
+        return res
+
+
 if __name__ == '__main__':
-    # s = Solution()
-    # c = s.numberOfSubarrays([1,1,2,1,1], 3)
-    # print(c)
-    print(3&1)
-    print(4&1)
-    print(10&1)
+    s = Solution()
+    c = s.numberOfSubarrays3([1,1,2,1,1], 3)
+    print(c)
